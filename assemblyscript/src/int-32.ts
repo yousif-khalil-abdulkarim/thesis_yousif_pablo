@@ -42,10 +42,9 @@ function sortTwo_int32_wasm(list: i32[], a: i32, b: i32): void {
   }
 }
 
-// Fungerar inte
 export function bubbleSort_int32_wasm(array: i32[]): i32[] {
   for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < array.length + i - 1; j++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
       sortTwo_int32_wasm(array, j + 1, j);
     }
   }
@@ -66,28 +65,35 @@ export function selectionSort_int32_wasm(array: i32[]): i32[] {
   }
   return array;
 }
-export function mergeSort_int32_wasm(list1: i32[], list2: i32[]): i32[] {
+function merge_int32_wasm(array1: i32[], array2: i32[]): i32[] {
   let merged: i32[] = [],
     i: i32 = 0,
     j: i32 = 0;
-  while (i < list1.length && j < list2.length) {
-    if (list1[i] < list2[j]) {
-      merged.push(list1[i]);
+  while (i < array1.length && j < array2.length) {
+    if (array1[i] < array2[j]) {
+      merged.push(array1[i]);
       i++;
     } else {
-      merged.push(list2[j]);
+      merged.push(array2[j]);
       j++;
     }
   }
-  while (i < list1.length) {
-    merged.push(list1[i]);
+  while (i < array1.length) {
+    merged.push(array1[i]);
     i++;
   }
-  while (j < list2.length) {
-    merged.push(list2[j]);
+  while (j < array2.length) {
+    merged.push(array2[j]);
     j++;
   }
   return merged;
+}
+export function mergeSort_int32_wasm(array: i32[]): i32[] {
+  if (array.length <= 1) return array;
+  let mid = floor(array.length / 2);
+  let left: i32[] = mergeSort_int32_wasm(array.slice(0, mid));
+  let right: i32[] = mergeSort_int32_wasm(array.slice(mid));
+  return merge_int32_wasm(left, right);
 }
 
 function getPivotIdx_int32_wasm(
@@ -135,53 +141,20 @@ export function metaBinarySearch_int32_wasm(array: i32[], target: i32): i32 {
   return -1;
 }
 export function binarySearch_int32_wasm(array: i32[], target: i32): i32 {
-  let startOffset = 0;
-  let endOffset = array.length - 1;
-  while (startOffset <= target) {
-    let m = startOffset + (target - startOffset) / 2;
-    if (array[m] == endOffset) {
-      return m;
+  let l = 0;
+  let r = array.length - 1;
+  let mid = -1;
+  while (r >= l) {
+    mid = l + floor((r - l) / 2);
+    if (array[mid] == target) {
+      return mid;
     }
-    if (array[m] < endOffset) {
-      startOffset = m + 1;
+    if (array[mid] > target) {
+      r = mid - 1;
     } else {
-      target = m - 1;
+      l = mid + 1;
     }
   }
-  return -1;
-}
-// Ej säker ifall den kommer fungera korrekt
-export function jumpSearch_int32_wasm(
-  array: i32[],
-  target: i32,
-  jump: i32
-): i32 {
-  let step = reinterpret<i32>(sqrt(reinterpret<f32>(jump)));
-
-  let prev = 0;
-  for (
-    let minStep = min(step, jump) - 1;
-    array[minStep] < target;
-    minStep = min(step, jump) - 1
-  ) {
-    prev = step;
-    step += reinterpret<i32>(sqrt(reinterpret<f32>(jump)));
-    if (prev >= jump) {
-      return -1;
-    }
-  }
-
-  while (array[prev] < target) {
-    prev++;
-
-    if (prev == min(step, jump)) {
-      return -1;
-    }
-  }
-  if (array[prev] == target) {
-    return prev;
-  }
-
   return -1;
 }
 

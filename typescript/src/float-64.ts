@@ -44,7 +44,7 @@ function sortTwo_float64_js(list: number[], a: number, b: number): void {
 
 export function bubbleSort_float64_js(array: number[]): number[] {
   for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < array.length + i - 1; j++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
       sortTwo_float64_js(array, j + 1, j);
     }
   }
@@ -164,36 +164,6 @@ export function binarySearch_float64_js(
       l = mid + 1;
     }
   }
-  return -1;
-}
-export function jumpSearch_float64_js(array: number[], target: number): number {
-  const jump = 8;
-  let step = Math.sqrt(jump);
-
-  let prev = 0;
-  for (
-    let minStep = Math.min(step, jump) - 1;
-    array[minStep] < target;
-    minStep = Math.min(step, jump) - 1
-  ) {
-    prev = step;
-    step += Math.sqrt(jump);
-    if (prev >= jump) {
-      return -1;
-    }
-  }
-
-  while (array[prev] < target) {
-    prev++;
-
-    if (prev == Math.min(step, jump)) {
-      return -1;
-    }
-  }
-  if (array[prev] == target) {
-    return prev;
-  }
-
   return -1;
 }
 
