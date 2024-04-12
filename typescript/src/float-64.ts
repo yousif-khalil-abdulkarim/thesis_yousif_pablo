@@ -65,34 +65,34 @@ export function selectionSort_float64_js(array: number[]): number[] {
   }
   return array;
 }
-function merge_float64_js(list1: number[], list2: number[]): number[] {
+function merge_float64_js(array1: number[], array2: number[]): number[] {
   let merged: number[] = [],
     i: number = 0,
     j: number = 0;
-  while (i < list1.length && j < list2.length) {
-    if (list1[i] < list2[j]) {
-      merged.push(list1[i]);
+  while (i < array1.length && j < array2.length) {
+    if (array1[i] < array2[j]) {
+      merged.push(array1[i]);
       i++;
     } else {
-      merged.push(list2[j]);
+      merged.push(array2[j]);
       j++;
     }
   }
-  while (i < list1.length) {
-    merged.push(list1[i]);
+  while (i < array1.length) {
+    merged.push(array1[i]);
     i++;
   }
-  while (j < list2.length) {
-    merged.push(list2[j]);
+  while (j < array2.length) {
+    merged.push(array2[j]);
     j++;
   }
   return merged;
 }
-export function mergeSort_float64_js(list: number[]): number[] {
-  if (list.length <= 1) return list;
-  let mid = Math.floor(list.length / 2);
-  let left: number[] = mergeSort_float64_js(list.slice(0, mid));
-  let right: number[] = mergeSort_float64_js(list.slice(mid));
+export function mergeSort_float64_js(array: number[]): number[] {
+  if (array.length <= 1) return array;
+  let mid = Math.floor(array.length / 2);
+  let left: number[] = mergeSort_float64_js(array.slice(0, mid));
+  let right: number[] = mergeSort_float64_js(array.slice(mid));
   return merge_float64_js(left, right);
 }
 

@@ -42,6 +42,7 @@ function sortTwo_int32_wasm(list: i32[], a: i32, b: i32): void {
   }
 }
 
+// Fungerar inte
 export function bubbleSort_int32_wasm(array: i32[]): i32[] {
   for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < array.length + i - 1; j++) {
