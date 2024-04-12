@@ -3,9 +3,12 @@
   "private": "true",
   "type": "module",
   "scripts": {
-    "build": "asc src/index.ts --target release"
+    "clean": "npx rimraf dist",
+    "build": "npm run clean && asc src/index.ts --shrinkLevel 3 --optimizeLevel 3 --target release",
+    "build:max": "npm run build -- --maximumMemory 65529 --initialMemory 65529"
   },
   "devDependencies": {
-    "assemblyscript": "^0.27.27"
+    "assemblyscript": "^0.27.27",
+    "rimraf": "^5.0.5"
   }
 }

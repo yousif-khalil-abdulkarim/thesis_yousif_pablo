@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>4800_000 !</title>
+  </head>
+
+  <body>
+    <script type="module">
+      // @ts-check
+      import { average_int32_wasm } from "../../../dist/release.js";
+
+      function randomNumber(range) {
+        return Math.round(Math.random() * range);
+      }
+      function execute() {
+        const values = Array.from({
+          length: 4800_000,
+        })
+          .fill("")
+          .map(() => randomNumber(10000000));
+        const start = performance.now();
+        average_int32_wasm(values);
+        const end = performance.now();
+        const time = end - start;
+        const messsage = [
+          "Perfomance!:",
+          "start: " + start,
+          "end: " + end,
+          "time: " + time,
+        ].join("\n");
+        console.log(messsage);
+        console.log("############");
+      }
+      execute();
+      execute();
+      execute();
+    </script>
+  </body>
+</html>
+</html>
