@@ -65,10 +65,7 @@ export function selectionSort_float64_js(array: number[]): number[] {
   }
   return array;
 }
-export function mergeSort_float64_js(
-  list1: number[],
-  list2: number[]
-): number[] {
+function merge_float64_js(list1: number[], list2: number[]): number[] {
   let merged: number[] = [],
     i: number = 0,
     j: number = 0;
@@ -90,6 +87,13 @@ export function mergeSort_float64_js(
     j++;
   }
   return merged;
+}
+export function mergeSort_float64_js(list: number[]): number[] {
+  if (list.length <= 1) return list;
+  let mid = Math.floor(list.length / 2);
+  let left: number[] = mergeSort_float64_js(list.slice(0, mid));
+  let right: number[] = mergeSort_float64_js(list.slice(mid));
+  return merge_float64_js(left, right);
 }
 
 function getPivotIdx_float64_js(
@@ -129,44 +133,41 @@ export function metaBinarySearch_float64_js(
   target: number
 ): number {
   let n = array.length;
-  let interval_size = n;
-  while (interval_size > 0) {
-    let index = Math.min(n - 1, interval_size / 2);
-    let mid = array[index];
-    if (mid == target) {
-      return index;
-    } else if (mid < target) {
-      interval_size = (n - index) / 2;
-    } else {
-      interval_size = index / 2;
-    }
+  let lg = Math.log(n - 1) / Math.log(2) + 1;
+
+  let pos = 0;
+  for (let i = lg; i >= 0; i--) {
+    if (array[pos] == target) return pos;
+
+    let new_pos = pos | (1 << i);
+
+    if (new_pos < n && array[new_pos] <= target) pos = new_pos;
   }
-  return -1;
+
+  return array[pos] == target ? pos : -1;
 }
 export function binarySearch_float64_js(
   array: number[],
   target: number
 ): number {
-  let startOffset = 0;
-  let endOffset = array.length - 1;
-  while (startOffset <= target) {
-    let m = startOffset + (target - startOffset) / 2;
-    if (array[m] == endOffset) {
-      return m;
+  let l = 0;
+  let r = array.length - 1;
+  let mid = -1;
+  while (r >= l) {
+    mid = l + Math.floor((r - l) / 2);
+    if (array[mid] == target) {
+      return mid;
     }
-    if (array[m] < endOffset) {
-      startOffset = m + 1;
+    if (array[mid] > target) {
+      r = mid - 1;
     } else {
-      target = m - 1;
+      l = mid + 1;
     }
   }
   return -1;
 }
-export function jumpSearch_float64_js(
-  array: number[],
-  target: number,
-  jump: number
-): number {
+export function jumpSearch_float64_js(array: number[], target: number): number {
+  const jump = 8;
   let step = Math.sqrt(jump);
 
   let prev = 0;
