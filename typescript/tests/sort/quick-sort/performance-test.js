@@ -24,7 +24,7 @@ const fileNames = readdirSync("./tests/sort/quick-sort")
     return 0;
   });
 
-for (const fileName of fileNames.slice(0, 1)) {
+for (const fileName of fileNames) {
   await withCsv(
     resolve("./tests/sort/quick-sort"),
    fileName,

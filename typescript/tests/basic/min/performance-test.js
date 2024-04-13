@@ -24,7 +24,7 @@ const fileNames = readdirSync("./tests/basic/min")
     return 0;
   });
 
-for (const fileName of fileNames.slice(0, 1)) {
+for (const fileName of fileNames) {
   await withCsv(
     resolve("./tests/basic/min"),
    fileName,

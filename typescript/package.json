@@ -6,7 +6,8 @@
     "_install_chrome": "npx puppeteer browsers install chrome",
     "_install_firefox": "npx puppeteer browsers install firefox",
     "_install_browsers": "npm run _install_chrome && npm run _install_firefox",
-    "_build": "npx tsc",
+    "_clean": "npx rimraf dist",
+    "_build": "npm run _clean && npx tsc",
     "setup": "npm run _build && npm run _install_browsers",
     "test:basic:average": "node ./tests/basic/average/performance-test.js",
     "test:basic:max": "node ./tests/basic/max/performance-test.js",
@@ -30,14 +31,13 @@
   "devDependencies": {
     "@types/lodash.capitalize": "^4.2.9",
     "@types/lodash.snakecase": "^4.1.9",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
-  },
-  "dependencies": {
     "@types/node": "^20.12.7",
     "fast-csv": "^5.0.1",
     "lodash.capitalize": "^4.2.1",
     "lodash.snakecase": "^4.1.1",
-    "puppeteer": "^22.6.4"
+    "puppeteer": "^22.6.4",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
   }
 }

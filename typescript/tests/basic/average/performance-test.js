@@ -24,7 +24,7 @@ const fileNames = readdirSync("./tests/basic/average")
     return 0;
   });
   
-for (const fileName of fileNames.slice(0, 1)) {
+for (const fileName of fileNames) {
   await withCsv(resolve("./tests/basic/average"), fileName, async (csv) => {
     /**
      * @type{Omit<import("../../performance-test-helper.js").IExcuteOptions, "browser">}
