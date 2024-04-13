@@ -13,7 +13,7 @@ const fileNames = readdirSync("./tests/min/average")
   .map((file) => file.split(".")[0]);
   
 for (const fileName of fileNames.slice(0, 1)) {
-  await withCsv(fileName, async (csv) => {
+  await withCsv(`./tests/basic/average/${fileName}.csv`, async (csv) => {
     /**
      * @type{Omit<import("../../cpu-test-helper.js").IExcuteOptions, "browser">}
      */
