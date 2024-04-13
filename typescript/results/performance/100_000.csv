@@ -1,0 +1,13 @@
+"Cpu model" , Architecture , "Operating system type" , "Operating system version" , Browser , "Iteration amount" , Iteration , Start , End , Time
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , Chrome/123.0.6312.122 , 2 , 1 , 34.5 , 35.100000001490116 , 0.6000000014901161
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , Chrome/123.0.6312.122 , 2 , 1 , 44.69999999925494 , 44.69999999925494 , 0
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , Chrome/123.0.6312.122 , 2 , 1 , 53.400000002235174 , 53.5 , 0.09999999776482582
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , Chrome/123.0.6312.122 , 2 , 2 , 16.899999998509884 , 19 , 2.100000001490116
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , Chrome/123.0.6312.122 , 2 , 2 , 32.80000000074506 , 32.899999998509884 , 0.09999999776482582
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , Chrome/123.0.6312.122 , 2 , 2 , 44.69999999925494 , 44.80000000074506 , 0.10000000149011612
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , firefox/126.0a1 , 2 , 1 , 64 , 65 , 1
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , firefox/126.0a1 , 2 , 1 , 68 , 68 , 0
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , firefox/126.0a1 , 2 , 1 , 71 , 71 , 0
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , firefox/126.0a1 , 2 , 2 , 65 , 67 , 2
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , firefox/126.0a1 , 2 , 2 , 71 , 71 , 0
+"AMD Ryzen 7 3700X 8-Core Processor" , x64 , Windows_NT , "Windows 10 Pro" , firefox/126.0a1 , 2 , 2 , 73 , 73 , 0

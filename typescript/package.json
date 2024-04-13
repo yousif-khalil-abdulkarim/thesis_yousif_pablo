@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "_install_chrome": "npx @puppeteer/browsers chrome",
-    "_install_firefox": "npx @puppeteer/browsers firefox",
+    "_install_chrome": "npx puppeteer browsers install chrome",
+    "_install_firefox": "npx puppeteer browsers install firefox",
     "_install_browsers": "npm run _install_chrome && npm run _install_firefox",
     "_build": "npx tsc",
     "setup": "npm run _build && npm run _install_browsers",
