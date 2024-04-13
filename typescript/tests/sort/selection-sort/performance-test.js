@@ -12,7 +12,7 @@ const fileNames = readdirSync("./tests/sort/buble-sort")
   .filter((file) => file.endsWith(".html"))
   .map((file) => file.split(".")[0]);
 
-for (const fileName of fileNames.slice(0, 1)) {
+for (const fileName of fileNames) {
   await withCsv(`./tests/basic/average/${fileName}.csv`, async (csv) => {
     /**
      * @type{Omit<import("../../cpu-test-helper.js").IExcuteOptions, "browser">}

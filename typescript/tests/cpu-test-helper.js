@@ -241,5 +241,7 @@ export async function withCsv(directory, fileName, callback) {
   });
   await callback(csv);
   csv.end();
+  console.log("file!!!:");
+  console.log(file);
   await writeFile(file, csv);
 }

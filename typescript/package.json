@@ -24,7 +24,7 @@
     "test:sort:merge-sort": "node ./tests/sort/merge-sort/performance-test.js",
     "test:sort:quick-sort": "node ./tests/sort/quick-sort/performance-test.js",
     "test:sort:selection-sort": "node ./tests/sort/selection-sort/performance-test.js",
-    "test:sort": "npm run test:sort:buble-sort && npm run test:sort:merge-sort && npm run test:quick:buble-sort && npm run test:sort:selection-sort",
+    "test:sort": "npm run test:sort:buble-sort && npm run test:sort:merge-sort && npm run test:sort:quick-sort && npm run test:sort:selection-sort",
     "test": "npm run test:basic && npm run test:search && npm run test:matrix && npm run test:sort"
   },
   "devDependencies": {

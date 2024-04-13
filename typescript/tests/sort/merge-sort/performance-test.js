@@ -7,15 +7,26 @@ import {
   withCsv,
 } from "../../cpu-test-helper.js";
 import { readdirSync } from "node:fs";
-console.log(resolve(`./tests/basic/average/${"fileName"}.csv`));
+
 const fileNames = readdirSync("./tests/basic/average")
   .filter((file) => file.endsWith(".html"))
-  .map((file) => file.split(".")[0]);
+  .map((file) => file.split(".")[0])
+  .sort((a, b) => {
+    const aNbr = Number(a.replace("_", ""));
+    const bNbr = Number(b.replace("_", ""));
+    if (aNbr < bNbr) {
+      return -1;
+    }
+    if (aNbr > bNbr) {
+      return 1;
+    }
+    return 0;
+  });
 
-for (const fileName of fileNames.slice(0, 1)) {
+for (const fileName of fileNames) {
   await withCsv(
     resolve("./tests/basic/average"),
-    `${fileName}.csv`,
+   fileName,
     async (csv) => {
       /**
        * @type{Omit<import("../../cpu-test-helper.js").IExcuteOptions, "browser">}
