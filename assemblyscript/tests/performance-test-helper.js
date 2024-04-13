@@ -150,6 +150,7 @@ async function executeTestRepeat(options) {
 async function excute(options) {
   const { browser: browser_, onPerformanceMessage, ...rest } = options;
   const browser = await launch({
+    timeout: 0,
     product: browser_,
     protocol: browser_ === "chrome" ? "cdp" : "webDriverBiDi",
     headless: true,
