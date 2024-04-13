@@ -7,35 +7,51 @@ import {
   withCsv,
 } from "../../cpu-test-helper.js";
 import { readdirSync } from "node:fs";
+import { TEST_ITERATION_AMOUNT } from "../../config.js";
 
-const fileNames = readdirSync("./tests/sort/buble-sort")
+const fileNames = readdirSync("./tests/sort/selection-sort")
   .filter((file) => file.endsWith(".html"))
-  .map((file) => file.split(".")[0]);
-
-for (const fileName of fileNames) {
-  await withCsv(`./tests/basic/average/${fileName}.csv`, async (csv) => {
-    /**
-     * @type{Omit<import("../../cpu-test-helper.js").IExcuteOptions, "browser">}
-     */
-    const settings = {
-      filePath: resolve(`./tests/sort/selection-sort/${fileName}.html`),
-      iterationAmount: 30,
-      async onPerformanceMessage(performanceMessage) {
-        csv.write(
-          prettifyObjectKeys({
-            ...getSystemInfo(),
-            ...performanceMessage,
-          })
-        );
-      },
-    };
-    await excuteWithLogging({
-      browser: "chrome",
-      ...settings,
-    });
-    await excuteWithLogging({
-      browser: "firefox",
-      ...settings,
-    });
+  .map((file) => file.split(".")[0])
+  .sort((a, b) => {
+    const aNbr = Number(a.replace("_", ""));
+    const bNbr = Number(b.replace("_", ""));
+    if (aNbr < bNbr) {
+      return -1;
+    }
+    if (aNbr > bNbr) {
+      return 1;
+    }
+    return 0;
   });
+
+for (const fileName of fileNames.slice(0, 1)) {
+  await withCsv(
+    resolve("./tests/sort/selection-sort"),
+    fileName,
+    async (csv) => {
+      /**
+       * @type{Omit<import("../../cpu-test-helper.js").IExcuteOptions, "browser">}
+       */
+      const settings = {
+        filePath: resolve(`./tests/sort/selection-sort/${fileName}.html`),
+        iterationAmount: TEST_ITERATION_AMOUNT,
+        async onPerformanceMessage(performanceMessage) {
+          csv.write(
+            prettifyObjectKeys({
+              ...getSystemInfo(),
+              ...performanceMessage,
+            })
+          );
+        },
+      };
+      await excuteWithLogging({
+        browser: "chrome",
+        ...settings,
+      });
+      await excuteWithLogging({
+        browser: "firefox",
+        ...settings,
+      });
+    }
+  );
 }

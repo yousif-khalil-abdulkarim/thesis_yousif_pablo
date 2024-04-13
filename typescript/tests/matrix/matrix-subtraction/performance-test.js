@@ -7,8 +7,9 @@ import {
   withCsv,
 } from "../../cpu-test-helper.js";
 import { readdirSync } from "node:fs";
+import { TEST_ITERATION_AMOUNT } from "../../config.js"
 
-const fileNames = readdirSync("./tests/basic/average")
+const fileNames = readdirSync("./tests/matrix/matrix-subtraction")
   .filter((file) => file.endsWith(".html"))
   .map((file) => file.split(".")[0])
   .sort((a, b) => {
@@ -23,17 +24,17 @@ const fileNames = readdirSync("./tests/basic/average")
     return 0;
   });
 
-for (const fileName of fileNames) {
+for (const fileName of fileNames.slice(0, 1)) {
   await withCsv(
-    resolve("./tests/basic/average"),
+    resolve("./tests/matrix/matrix-subtraction"),
    fileName,
     async (csv) => {
       /**
        * @type{Omit<import("../../cpu-test-helper.js").IExcuteOptions, "browser">}
        */
       const settings = {
-        filePath: resolve(`./tests/basic/average/${fileName}.html`),
-        iterationAmount: 1,
+        filePath: resolve(`./tests/matrix/matrix-subtraction/${fileName}.html`),
+        iterationAmount: TEST_ITERATION_AMOUNT,
         async onPerformanceMessage(performanceMessage) {
           csv.write(
             prettifyObjectKeys({

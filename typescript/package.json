@@ -12,7 +12,7 @@
     "test:basic:max": "node ./tests/basic/max/performance-test.js",
     "test:basic:min": "node ./tests/basic/min/performance-test.js",
     "test:basic:sum": "node ./tests/basic/sum/performance-test.js",
-    "test:basic": "npm run test:basic:average && npm run test:basic:max && npm run test:basic:min && npm run test:basic:max",
+    "test:basic": "npm run test:basic:average && npm run test:basic:max && npm run test:basic:min && npm run test:basic:sum",
     "test:search:binary-search": "node ./tests/search/binary-search/performance-test.js",
     "test:search:interpolation-search": "node ./tests/search/interpolation-search/performance-test.js",
     "test:search:meta-binary-search": "node ./tests/search/meta-binary-search/performance-test.js",
