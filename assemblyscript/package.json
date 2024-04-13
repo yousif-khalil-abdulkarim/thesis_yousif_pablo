@@ -3,12 +3,42 @@
   "private": "true",
   "type": "module",
   "scripts": {
-    "clean": "npx rimraf dist",
-    "build": "npm run clean && asc src/index.ts --shrinkLevel 3 --optimizeLevel 3 --target release",
-    "build:max": "npm run build -- --maximumMemory 65529 --initialMemory 65529"
+    "_install_chrome": "npx puppeteer browsers install chrome",
+    "_install_firefox": "npx puppeteer browsers install firefox",
+    "_install_browsers": "npm run _install_chrome && npm run _install_firefox",
+    "_clean": "npx rimraf dist",
+    "_build": "npm run _clean && npx asc src/index.ts --shrinkLevel 3 --optimizeLevel 3 --target release",
+    "setup": "npm run _build && npm run _install_browsers",
+    "test:basic:average": "node ./tests/basic/average/performance-test.js",
+    "test:basic:max": "node ./tests/basic/max/performance-test.js",
+    "test:basic:min": "node ./tests/basic/min/performance-test.js",
+    "test:basic:sum": "node ./tests/basic/sum/performance-test.js",
+    "test:basic": "npm run test:basic:average && npm run test:basic:max && npm run test:basic:min && npm run test:basic:sum",
+    "test:search:binary-search": "node ./tests/search/binary-search/performance-test.js",
+    "test:search:interpolation-search": "node ./tests/search/interpolation-search/performance-test.js",
+    "test:search:meta-binary-search": "node ./tests/search/meta-binary-search/performance-test.js",
+    "test:search": "npm run test:search:binary-search && npm run test:search:interpolation-search && npm run test:search:meta-binary-search",
+    "test:matrix:matrix-addition": "node ./tests/matrix/matrix-addition/performance-test.js",
+    "test:matrix:matrix-subtraction": "node ./tests/matrix/matrix-subtraction/performance-test.js",
+    "test:matrix": "npm run test:matrix:matrix-addition && npm run test:matrix:matrix-subtraction",
+    "test:sort:buble-sort": "node ./tests/sort/buble-sort/performance-test.js",
+    "test:sort:merge-sort": "node ./tests/sort/merge-sort/performance-test.js",
+    "test:sort:quick-sort": "node ./tests/sort/quick-sort/performance-test.js",
+    "test:sort:selection-sort": "node ./tests/sort/selection-sort/performance-test.js",
+    "test:sort": "npm run test:sort:buble-sort && npm run test:sort:merge-sort && npm run test:sort:quick-sort && npm run test:sort:selection-sort",
+    "test": "npm run test:basic && npm run test:search && npm run test:matrix && npm run test:sort"
   },
   "devDependencies": {
     "assemblyscript": "^0.27.27",
     "rimraf": "^5.0.5"
+  },
+  "dependencies": {
+    "@types/lodash.capitalize": "^4.2.9",
+    "@types/lodash.snakecase": "^4.1.9",
+    "@types/node": "^20.12.7",
+    "fast-csv": "^5.0.1",
+    "lodash.capitalize": "^4.2.1",
+    "lodash.snakecase": "^4.1.1",
+    "puppeteer": "^22.6.4"
   }
 }
