@@ -3,15 +3,37 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npx tsc",
-    "test": "node --test"
+    "_install_chrome": "npx @puppeteer/browsers chrome",
+    "_install_firefox": "npx @puppeteer/browsers firefox",
+    "_install_browsers": "npm run _install_chrome && npm run _install_firefox",
+    "_build": "npx tsc",
+    "setup": "npm run _build && npm run _install_browsers",
+    "test:basic:average": "node ./tests/basic/average/performance-test.js",
+    "test:basic:max": "node ./tests/basic/max/performance-test.js",
+    "test:basic:min": "node ./tests/basic/min/performance-test.js",
+    "test:basic:sum": "node ./tests/basic/sum/performance-test.js",
+    "test:search:binary-search": "node ./tests/search/binary-search/performance-test.js",
+    "test:search:interpolation-search": "node ./tests/search/interpolation-search/performance-test.js",
+    "test:search:meta-binary-search": "node ./tests/search/meta-binary-search/performance-test.js",
+    "test:matrix:matrix-addition": "node ./tests/matrix/matrix-addition/performance-test.js",
+    "test:matrix:matrix-subtraction": "node ./tests/matrix/matrix-subtraction/performance-test.js",
+    "test:sort:buble-sort": "node ./tests/sort/buble-sort/performance-test.js",
+    "test:sort:merge-sort": "node ./tests/sort/merge-sort/performance-test.js",
+    "test:sort:quick-sort": "node ./tests/sort/quick-sort/performance-test.js",
+    "test:sort:selection-sort": "node ./tests/sort/selection-sort/performance-test.js"
   },
   "devDependencies": {
+    "@types/lodash.capitalize": "^4.2.9",
+    "@types/lodash.snakecase": "^4.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "dependencies": {
     "@types/node": "^20.12.7",
+    "csv": "^6.3.8",
+    "fast-csv": "^5.0.1",
+    "lodash.capitalize": "^4.2.1",
+    "lodash.snakecase": "^4.1.1",
     "puppeteer": "^22.6.4"
   }
 }
