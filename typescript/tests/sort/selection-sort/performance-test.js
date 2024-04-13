@@ -19,7 +19,7 @@ for (const fileName of fileNames.slice(0, 1)) {
      */
     const settings = {
       filePath: resolve(`./tests/sort/selection-sort/${fileName}.html`),
-      iterationAmount: 2,
+      iterationAmount: 30,
       async onPerformanceMessage(performanceMessage) {
         csv.write(
           prettifyObjectKeys({

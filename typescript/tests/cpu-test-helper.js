@@ -6,6 +6,7 @@ import snakecase from "lodash.snakecase";
 import { format } from "fast-csv";
 import { writeFile } from "node:fs/promises";
 import { existsSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
 
 /**
  * @typedef {{
@@ -223,16 +224,17 @@ export function prettifyObjectKeys(object) {
 
 /**
  * @param {string} fileName
+ * @param {string} directory
  * @param {(csv: import("fast-csv").CsvFormatterStream) => Promise<void>} callback
  */
-export async function withCsv(fileName, callback) {
-  if (!existsSync("./results")) {
-    mkdirSync("./results");
+export async function withCsv(directory, fileName, callback) {
+  if (!existsSync(directory)) {
+    mkdirSync(directory);
   }
-  if (!existsSync("./results/performance")) {
-    mkdirSync("./results/performance");
+  if (!existsSync(join(directory, "performance"))) {
+    mkdirSync(join(directory, "performance"));
   }
-  const file = `results/performance/${fileName}.csv`;
+  const file = join(directory, "performance", `${fileName}.csv`);
   const csv = format({
     headers: true,
     delimiter: " , ",

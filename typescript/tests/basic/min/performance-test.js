@@ -7,35 +7,39 @@ import {
   withCsv,
 } from "../../cpu-test-helper.js";
 import { readdirSync } from "node:fs";
-
-const fileNames = readdirSync("./tests/min/average")
+console.log(resolve(`./tests/basic/average/${"fileName"}.csv`));
+const fileNames = readdirSync("./tests/basic/average")
   .filter((file) => file.endsWith(".html"))
   .map((file) => file.split(".")[0]);
-  
+
 for (const fileName of fileNames.slice(0, 1)) {
-  await withCsv(`./tests/basic/average/${fileName}.csv`, async (csv) => {
-    /**
-     * @type{Omit<import("../../cpu-test-helper.js").IExcuteOptions, "browser">}
-     */
-    const settings = {
-      filePath: resolve(`./tests/min/average/${fileName}.html`),
-      iterationAmount: 2,
-      async onPerformanceMessage(performanceMessage) {
-        csv.write(
-          prettifyObjectKeys({
-            ...getSystemInfo(),
-            ...performanceMessage,
-          })
-        );
-      },
-    };
-    await excuteWithLogging({
-      browser: "chrome",
-      ...settings,
-    });
-    await excuteWithLogging({
-      browser: "firefox",
-      ...settings,
-    });
-  });
+  await withCsv(
+    resolve("./tests/basic/average"),
+    `${fileName}.csv`,
+    async (csv) => {
+      /**
+       * @type{Omit<import("../../cpu-test-helper.js").IExcuteOptions, "browser">}
+       */
+      const settings = {
+        filePath: resolve(`./tests/basic/average/${fileName}.html`),
+        iterationAmount: 1,
+        async onPerformanceMessage(performanceMessage) {
+          csv.write(
+            prettifyObjectKeys({
+              ...getSystemInfo(),
+              ...performanceMessage,
+            })
+          );
+        },
+      };
+      await excuteWithLogging({
+        browser: "chrome",
+        ...settings,
+      });
+      await excuteWithLogging({
+        browser: "firefox",
+        ...settings,
+      });
+    }
+  );
 }
