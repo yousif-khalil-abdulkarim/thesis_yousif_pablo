@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>1600_000 !</title>
+  </head>
+
+  <body>
+    <script type="module">
+      // @ts-check
+      import { metaBinarySearch_float64_js } from "../../../dist/float-64.js";
+
+      function randomNumber(range) {
+        return Math.round(Math.random() * range);
+      }
+      function execute() {
+        const values = Array.from({
+          length: 1600_000,
+        })
+          .fill("")
+          .map(() => randomNumber(10000000));
+        const target = values[Math.round(Math.random() * (values.length - 1))]
+
+        const start = performance.now();
+        metaBinarySearch_float64_js(values, target);
+        const end = performance.now();
+        const time = end - start;
+        const messsage = [
+          "Perfomance!:",
+          "start: " + start,
+          "end: " + end,
+          "time: " + time,
+        ].join("\n");
+        console.log(messsage);
+        console.log("############");
+      }
+      execute();
+      execute();
+      execute();
+    </script>
+  </body>
+</html>
+</html>
