@@ -5,7 +5,7 @@ import {
   getSystemInfo,
   prettifyObjectKeys,
   withCsv,
-} from "../../cpu-test-helper.js";
+} from "../../performance-test-helper.js";
 import { readdirSync } from "node:fs";
 import { TEST_ITERATION_AMOUNT } from "../../config.js"
 
@@ -27,7 +27,7 @@ const fileNames = readdirSync("./tests/basic/average")
 for (const fileName of fileNames.slice(0, 1)) {
   await withCsv(resolve("./tests/basic/average"), fileName, async (csv) => {
     /**
-     * @type{Omit<import("../../cpu-test-helper.js").IExcuteOptions, "browser">}
+     * @type{Omit<import("../../performance-test-helper.js").IExcuteOptions, "browser">}
      */
     const settings = {
       filePath: resolve(`./tests/basic/average/${fileName}.html`),

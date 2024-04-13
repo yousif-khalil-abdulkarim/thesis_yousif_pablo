@@ -35,7 +35,6 @@
   },
   "dependencies": {
     "@types/node": "^20.12.7",
-    "csv": "^6.3.8",
     "fast-csv": "^5.0.1",
     "lodash.capitalize": "^4.2.1",
     "lodash.snakecase": "^4.1.1",
