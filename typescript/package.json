@@ -12,15 +12,20 @@
     "test:basic:max": "node ./tests/basic/max/performance-test.js",
     "test:basic:min": "node ./tests/basic/min/performance-test.js",
     "test:basic:sum": "node ./tests/basic/sum/performance-test.js",
+    "test:basic": "npm run test:basic:average && npm run test:basic:max && npm run test:basic:min && npm run test:basic:max",
     "test:search:binary-search": "node ./tests/search/binary-search/performance-test.js",
     "test:search:interpolation-search": "node ./tests/search/interpolation-search/performance-test.js",
     "test:search:meta-binary-search": "node ./tests/search/meta-binary-search/performance-test.js",
+    "test:search": "npm run test:search:binary-search && npm run test:search:interpolation-search && npm run test:search:meta-binary-search",
     "test:matrix:matrix-addition": "node ./tests/matrix/matrix-addition/performance-test.js",
     "test:matrix:matrix-subtraction": "node ./tests/matrix/matrix-subtraction/performance-test.js",
+    "test:matrix": "npm run test:matrix:matrix-addition && npm run test:matrix:matrix-subtraction",
     "test:sort:buble-sort": "node ./tests/sort/buble-sort/performance-test.js",
     "test:sort:merge-sort": "node ./tests/sort/merge-sort/performance-test.js",
     "test:sort:quick-sort": "node ./tests/sort/quick-sort/performance-test.js",
-    "test:sort:selection-sort": "node ./tests/sort/selection-sort/performance-test.js"
+    "test:sort:selection-sort": "node ./tests/sort/selection-sort/performance-test.js",
+    "test:sort": "npm run test:sort:buble-sort && npm run test:sort:merge-sort && npm run test:quick:buble-sort && npm run test:sort:selection-sort",
+    "test": "npm run test:basic && npm run test:search && npm run test:matrix && npm run test:sort"
   },
   "devDependencies": {
     "@types/lodash.capitalize": "^4.2.9",
