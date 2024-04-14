@@ -153,7 +153,7 @@ async function excute(options) {
   const { browser: browser_, onPerformanceMessage, ...rest } = options;
   const browser = await launch({
     timeout: 0,
-    protocolTimeout: 4294967293,
+    protocolTimeout: 2147483644,
     product: browser_,
     protocol: browser_ === "chrome" ? "cdp" : "webDriverBiDi",
     headless: true,
