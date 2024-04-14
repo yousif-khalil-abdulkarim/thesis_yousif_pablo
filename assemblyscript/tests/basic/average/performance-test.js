@@ -45,5 +45,9 @@ for (const fileName of fileNames) {
       browser: "chrome",
       ...settings,
     });
+    await excuteWithLogging({
+        browser: "firefox",
+        ...settings,
+      });
   });
 }

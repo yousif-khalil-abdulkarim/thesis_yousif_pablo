@@ -59,8 +59,6 @@ async function executeTest(options) {
 
   const page = await browser.newPage();
   page.on("console", async (message) => {
-    console.log("message.text:");
-    console.log(message.text());
     if (message.type() !== "log") {
       return;
     }
