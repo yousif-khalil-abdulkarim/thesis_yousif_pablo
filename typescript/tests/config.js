@@ -1,1 +1,1 @@
-export const TEST_ITERATION_AMOUNT = 10;
+export const TEST_ITERATION_AMOUNT = 30;
