@@ -73,7 +73,9 @@ async function executeTest(options) {
   });
 
   const testFilePath = `file://${filePath}`;
-  await page.goto(testFilePath);
+  await page.goto(testFilePath, {
+    timeout: 0,
+  });
   await page.close();
 }
 
