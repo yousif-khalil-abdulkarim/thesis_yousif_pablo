@@ -59,6 +59,8 @@ async function executeTest(options) {
 
   const page = await browser.newPage();
   page.on("console", async (message) => {
+    console.log("message.text:");
+    console.log(message.text());
     if (message.type() !== "log") {
       return;
     }
@@ -74,6 +76,10 @@ async function executeTest(options) {
 
   const testFilePath = `file://${filePath}`;
   await page.goto(testFilePath, {
+    timeout: 0,
+    waitUntil: "domcontentloaded",
+  });
+  await page.waitForSelector(".finished", {
     timeout: 0,
   });
   await page.close();
@@ -154,6 +160,7 @@ async function excute(options) {
   const browser = await launch({
     timeout: 0,
     product: browser_,
+    protocolTimeout: 2147483644,
     protocol: browser_ === "chrome" ? "cdp" : "webDriverBiDi",
     headless: true,
     args: ["--disable-web-security"],
