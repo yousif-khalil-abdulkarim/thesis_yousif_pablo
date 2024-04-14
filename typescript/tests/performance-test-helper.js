@@ -75,6 +75,10 @@ async function executeTest(options) {
   const testFilePath = `file://${filePath}`;
   await page.goto(testFilePath, {
     timeout: 0,
+    waitUntil: "domcontentloaded",
+  });
+  await page.waitForSelector(".finished", {
+    timeout: 0,
   });
   await page.close();
 }
